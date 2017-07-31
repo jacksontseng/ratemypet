@@ -7,19 +7,17 @@ jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 class addPet(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_env.get_template('templates/addpet.html')
+        self.response.out.write(template.render())
     def post(self):
 
         my_vars = {
-            "noun1":self.request.get("noun1"),
-            "activity":self.request.get("activity"),
-            "celebrity":self.request.get("celebrity"),
-            "teacher":self.request.get("teacher"),
+            "petname":self.request.get("petname"),
+            "type":self.request.get("type"),
+            "breed":self.request.get("breed"),
+            "description":self.request.get("description"),
             "show":self.request.get("show"),
             "fun":self.request.get("fun")
         }
-        self.response.out.write("You have submitted your madlib")
-
-
-app = webapp2.WSGIApplication([
-    ('/addpet', addpet)
-], debug=True)
+        self.response.out.write("You have submitted your pet")
