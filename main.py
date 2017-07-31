@@ -7,7 +7,7 @@ import json
 from google.appengine.api import users
 import add
 import logging
-
+import add
 import shutil
 
 
@@ -60,4 +60,5 @@ app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/signin', signin),
     ('/test', Test),
+    ('/addpet', add.AddPet)
 ], debug=True)
