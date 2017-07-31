@@ -11,36 +11,12 @@
   <!--<body> --->
 
     <body>
-    <div class="slideshow" style="position: absolute;">
-        <img id="img1" src="" class="myImages" title="image">
-        <img id="img2" src="" class="myImages" title="image">
-    </div>
-    <script>
+      <form action="/action_page.php">
+    <input type="file" name="pic" accept="image/*">
+    <input type="submit">
 
-        bmi_SafeAddOnload(bmi_load, "bmi_orig_img", 0);
 
-        function getMyLink() {
-            var a = "./Files/1.jpg?a=" + Math.floor(Math.random() * 11);
-            return a;
-        }
-
-        //Assign image source and display it (you have defined display:none attribute)
-        $('#img1').attr('src', getMyLink()).fadeIn(300);
-        $('#img2').attr('src', getMyLink()).fadeIn(300);
-    </script>
-
-    <style>
-        .myImages {
-            width : 1024px;
-            height : 768px;
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            display: none;
-            z-index: 5;
-            opacity: 0;
-       }
-    </style>
+  </form>
 </body>
 <!--<a href="/signin">Sign In</a>
 
