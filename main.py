@@ -18,7 +18,7 @@ import webapp2
 import jinja2
 import os
 import json
-# import
+from google.appengine.api import users
 
 import logging
 
@@ -32,18 +32,30 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_env.get_template('templates/main.html')
         return self.response.write(template.render())
 
-class signin(webapp2):
-    def get:
-        pass
-        # add google signin
+class signin(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
 
-class add(webapp2):
-    def get:
-        pass
+        template = jinja_env.get_template('templates/signin.html')
+        self.response.out.write(template.render())
+
+        if user:
+            nickname = user.nickname()
+            logout_url = users.create_logout_url('/')
+            greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(
+                nickname, logout_url)
+        else:
+            login_url = users.create_login_url('/')
+            greeting = '<a href="{}">Sign in</a>'.format(login_url)
+
+class add(webapp2.RequestHandler):
+    pass
+    # def get:
+    #     pass
 
 
 
-        
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/signin', signin),
