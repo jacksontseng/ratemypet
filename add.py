@@ -1,7 +1,7 @@
 import jinja2
 import os
 import webapp2
-import image
+
 
 
 jinja_env = jinja2.Environment(
@@ -14,8 +14,7 @@ class addPet(webapp2.RequestHandler):
     def post(self):
 
 
-        myImage = Image.open("your_image_here")
-        myImage.show()
+        #https://www.googleapis.com/upload/drive/v3?uploadType=media
 
         my_vars = {
             "petname":self.request.get("petname"),

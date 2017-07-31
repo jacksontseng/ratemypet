@@ -7,8 +7,8 @@ import json
 from google.appengine.api import users
 import add
 import logging
-from tkinter import *
-from PIL import ImageTk, Image
+
+import shutil
 
 
 
@@ -37,9 +37,23 @@ class signin(webapp2.RequestHandler):
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
 
 class Test(webapp2.RequestHandler):
-    def get(self):
-        myImage = Image.open("your_image_here")
-        myImage.show()
+    def save_uploaded_file (form_field, upload_dir):
+        form = cgi.FieldStorage()
+        if not form.has_key(form_field): return
+        fileitem = form[form_field]
+        if not fileitem.file: return
+
+        outpath = os.path.join(upload_dir, fileitem.filename)
+
+        with open(outpath, 'wb') as fout:
+            shutil.copyfileobj(fileitem.file, fout, 100000)
+
+    #def get(self):
+        #myImage = Image.open("your_image_here")
+        #myImage.show()
+
+    #def post(self):
+        #POST https://www.googleapis.com/upload/drive/v3?uploadType=media
 
 
 app = webapp2.WSGIApplication([
@@ -48,6 +62,5 @@ app = webapp2.WSGIApplication([
 
     ('/test', Test),
 
-    ('/addpet', add.addPet)
 
 ], debug=True)
