@@ -38,5 +38,5 @@ class signin(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/signin', signin),
-    ('/addpet', add.addPet)
+    ('/addpet', add.AddPet)
 ], debug=True)
