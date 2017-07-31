@@ -1,6 +1,7 @@
 import jinja2
 import os
 import webapp2
+import image
 
 
 jinja_env = jinja2.Environment(
@@ -9,17 +10,11 @@ jinja_env = jinja2.Environment(
 class addPet(webapp2.RequestHandler):
     def post(self):
 
-        my_vars = {
-            "noun1":self.request.get("noun1"),
-            "activity":self.request.get("activity"),
-            "celebrity":self.request.get("celebrity"),
-            "teacher":self.request.get("teacher"),
-            "show":self.request.get("show"),
-            "fun":self.request.get("fun")
-        }
-        self.response.out.write("You have submitted your madlib")
+        myImage = Image.open("your_image_here")
+        myImage.show()
+
 
 
 app = webapp2.WSGIApplication([
-    ('/addpet', addpet)
+    ('/addpet', addPet)
 ], debug=True)

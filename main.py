@@ -21,6 +21,8 @@ import json
 from google.appengine.api import users
 
 import logging
+from tkinter import *
+from PIL import ImageTk, Image
 
 
 
@@ -48,9 +50,14 @@ class signin(webapp2.RequestHandler):
             login_url = users.create_login_url('/')
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
 
+class Test(webapp2.RequestHandler):
+    def get(self):
+        myImage = Image.open("your_image_here")
+        myImage.show()
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/signin', signin),
-    ('/addpet', add)
+    ('/test', Test),
 ], debug=True)
