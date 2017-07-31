@@ -8,7 +8,7 @@ jinja_env = jinja2.Environment(
 
 class addPet(webapp2.RequestHandler):
     def post(self):
-        
+
         my_vars = {
             "noun1":self.request.get("noun1"),
             "activity":self.request.get("activity"),
@@ -18,3 +18,8 @@ class addPet(webapp2.RequestHandler):
             "fun":self.request.get("fun")
         }
         self.response.out.write("You have submitted your madlib")
+
+
+app = webapp2.WSGIApplication([
+    ('/addpet', addpet)
+], debug=True)

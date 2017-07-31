@@ -48,13 +48,6 @@ class signin(webapp2.RequestHandler):
             login_url = users.create_login_url('/')
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
 
-class add(webapp2.RequestHandler):
-    pass
-    # def get:
-    #     pass
-
-
-
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
