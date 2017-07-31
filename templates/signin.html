@@ -3,8 +3,59 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-  </head>
-  <body>
-test
-  </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script language="JavaScript">
+    $('#imagess').change(function(){
+
+          var total_images=$('#total_images').val();
+
+
+          var candidateimage=document.getElementById('imagess').value;
+          formdata = false;
+          var demo=document.getElementById("imagess").files;
+
+          if (window.FormData) {
+             formdata = new FormData();
+             }
+
+            var i = 0, len = demo.length, img, reader, file;
+           for ( ; i < len; i++ ) {
+            file = demo[i];
+            if (file.type.match(/image.*/)) {
+             if (formdata) {
+              formdata.append("images", file);
+
+             }
+            }
+           }
+
+
+          $('#preview').html('Uploading...');
+          var url=SITEURL+"users/image_upload/"+total_images;
+
+          $.ajax({
+              url: url,
+              type: "POST",
+              data: formdata,
+              processData: false,
+              contentType: false,
+              success: function (res) {
+                  $('#preview').html('');
+                  if (res == "maxlimit") {
+                      alert("You can't upload more than 4 images");
+                  }
+                  else if (res == "error") {
+                      alert("Image can't upload please try again.")
+                  }
+                  else {
+                      $('#user_images').append(res);
+
+
+                  }
+              }
+             });
+
+
+      }); 
+    </body>
 </html>
