@@ -59,8 +59,5 @@ class Test(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/signin', signin),
-
     ('/test', Test),
-
-
 ], debug=True)
