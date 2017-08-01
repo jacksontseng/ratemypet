@@ -2,9 +2,38 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Feed</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<a href='/addpet'>Add Pet </a>
+<div>
+            <a href="/feed">All</a>
+            <a href="?filter=mostrecent">Most Recent</a>
+            <a href="?filter=highest_rated">Highest Rated</a>
+            <a href="?filter=dog">Dogs</a>
+            <a href="?filter=cat">Cats</a>
+            <a href="?filter=bird">Birds</a>
+            <a href="?filter=pig">Pigs</a>
+          </div>
   </head>
   <body>
+<h1><center>Your Pets Feed</center></h1>
+<div>
 
+
+{% for pet in pets %}
+<div>
+<h3>{{ pet.petname }}</h3>
+<h3>{{ pet.age }}</h3>
+<h3>{{ pet.time_posted }} </h3>
+<h3>{{ pet.atype }} </h3>
+<h3>{{ pet.breed }}</h3>
+<h3>{{ pet.description }} </h3>
+</div>
+<br>
+{% endfor %}
+
+
+
+</div>
   </body>
 </html>

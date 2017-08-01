@@ -5,9 +5,10 @@ import jinja2
 import os
 import json
 from google.appengine.api import users
-import add
+
 import logging
 import add
+import feed
 import shutil
 
 
@@ -19,6 +20,11 @@ jinja_env = jinja2.Environment(
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_env.get_template('templates/main.html')
+        return self.response.write(template.render())
+
+class HomeHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_env.get_template('templates/home.html')
         return self.response.write(template.render())
 
 class signin(webapp2.RequestHandler):
@@ -43,8 +49,10 @@ class ImageHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler),
+    ('/main', MainHandler),
+    ('/', HomeHandler),
     ('/signin', signin),
-    ('/image', ImageHandler),
-    ('/addpet', add.AddPet),
+
+    ('/feed', feed.mainFeedHandler)
+
 ], debug=True)
