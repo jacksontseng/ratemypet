@@ -20,6 +20,11 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_env.get_template('templates/main.html')
         return self.response.write(template.render())
 
+class HomeHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_env.get_template('templates/home.html')
+        return self.response.write(template.render())
+
 class signin(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -57,7 +62,8 @@ class Test(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler),
+    ('/main', MainHandler),
+    ('/', HomeHandler),
     ('/signin', signin),
     ('/test', Test),
     ('/addpet', add.AddPet)
