@@ -6,7 +6,7 @@
   </head>
   <body>
 <h1><center>Forms Are Fun</center></h1>
-<form method="post" action ="">
+<form method="post" enctype="multipart/form-data" action ="">
   <!-- <label for="noun1"> Enter a name:</label> -->
      <h3>Enter your pet name: <input type="text" name="petname"/></h3>
      <h3>Enter type of animal:</h3>
@@ -19,13 +19,12 @@
  <br>
  <input type="radio" name="type" value="pig">pig
 
-    <h3>Add a picture of your pet:</h3>
+ <h3>Add a picture of your pet:</h3>
 
-<form action="/action_page.php">
   <input type="file" name="pic" accept="image/*">
-</form>
 
- <h3>Enter your pet's breed' <input type="text" name="breed"/></h3>
+
+ <h3>Enter your pet's breed: <input type="text" name="breed"/></h3>
 
  <h3>Enter a description of your pet:<input type="text" name="description"/></h3>
 <!-- add an image of the pet here -->
