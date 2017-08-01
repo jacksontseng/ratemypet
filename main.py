@@ -5,10 +5,12 @@ import jinja2
 import os
 import json
 from google.appengine.api import users
-import add
-import logging
 
+import logging
+import add
+import feed
 import shutil
+
 
 
 
@@ -60,4 +62,6 @@ app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/signin', signin),
     ('/test', Test),
+    ('/addpet', add.AddPet),
+    ('/feed', feed.all)
 ], debug=True)
