@@ -3,8 +3,7 @@ import os
 import webapp2
 from google.appengine.ext import ndb
 import datetime
-import add
-
+import logging
 
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -38,3 +37,6 @@ def new_pet(petname, atype, breed, description): #add image argument
   """Puts a new pet into Datastore."""
   newpet = AddPet2DS(petname=petname, atype=atype, time_posted=datetime.datetime.now(), breed=breed, description = description)
   return newpet.put()
+
+logging.info(AddPet2DS.query().get())
+print AddPet2DS.query().get()
