@@ -63,5 +63,5 @@ app = webapp2.WSGIApplication([
     ('/signin', signin),
     ('/test', Test),
     ('/addpet', add.AddPet),
-    ('/feed', feed.all)
+    ('/feed', feed.mainFeedHandler)
 ], debug=True)

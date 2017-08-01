@@ -2,13 +2,52 @@ import jinja2
 import os
 import webapp2
 from google.appengine.ext import ndb
+import logging
 import add
+
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 
-class all(webapp2.RequestHandler):
+class mainFeedHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_env.get_template('templates/feed.html')
-        self.response.out.write(template.render())
-        query = add.AddPet2DS.query().get()
+        if self.request.get('filter') == 'highest_rated':
+            pets = highest_rated()
+
+        elif self.request.get('filter') == 'mostrecent':
+            pets = mostrecent()
+
+        elif self.request.get('filter') in ['dog', 'cat', 'bird', 'pig']:
+            pets = atype(self.request.get('filter'))
+
+        else:
+            pets = allpets()
+
+
+        args = {'pets': pets}
+
+        self.response.write(template.render(args))
+
+
+def allpets():
+    query = add.AddPet2DS.query()
+    fetch = query.fetch()
+    logging.info(query)
+    return fetch
+
+
+def mostrecent():
+    
+    query = add.AddPet2DS.query().fetch().order('date')
+    return query
+
+def highest_rated():
+    pass
+
+def atype(animal_type):
+    print animal_type
+    query = add.AddPet2DS.query().filter(ndb.GenericProperty('atype') == animal_type)
+    animalfilter = query.fetch(limit = 10)
+    print animalfilter
+    return animalfilter
