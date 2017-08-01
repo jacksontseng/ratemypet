@@ -4,6 +4,7 @@ import webapp2
 from google.appengine.ext import ndb
 import logging
 import add
+import datetime
 
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -38,9 +39,11 @@ def allpets():
 
 
 def mostrecent():
-    
-    query = add.AddPet2DS.query().fetch().order('date')
-    return query
+    """Fetches all GIFs posted in the past hour."""
+    onedayago = datetime.datetime.now() - datetime.timedelta(hours=24)
+    query = add.AddPet2DS.query(add.AddPet2DS.time_posted > onedayago)
+    return query.fetch(limit=10)
+
 
 def highest_rated():
     pass

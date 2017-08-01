@@ -31,7 +31,7 @@ class AddPet2DS(ndb.Model):
     petname = ndb.StringProperty()
     atype = ndb.StringProperty()
     breed = ndb.StringProperty()
-    time_posted = ndb.DateProperty()
+    time_posted = ndb.DateTimeProperty()
     description = ndb.StringProperty()
     age = ndb.IntegerProperty()
     # add image here
