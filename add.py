@@ -20,12 +20,12 @@ class AddPet(webapp2.RequestHandler):
         description = self.request.get("description")
         age = int(self.request.get("age"))
         date = self.request.get("time_posted")
-        picture = self.request.get("pic")
-        file_name = self.request.get("file_name")
+        image = self.request.get('image')
 
-        new_pet(petname, atype, breed, description,age, date, picture, file_name)
-        self.response.out.write("You have submitted your pet <br>")
-        self.response.out.write("skdjglkjsadf")
+        new_pet(petname, atype, breed, description, age, date, image) #add image argument
+        self.response.out.write("You have submitted your pet!")
+        self.response.out.write("<a href='/addpet'>"
+
 
 
 
@@ -39,11 +39,14 @@ class AddPet2DS(ndb.Model):
     time_posted = ndb.DateTimeProperty()
     description = ndb.StringProperty()
     age = ndb.IntegerProperty()
-    picture = ndb.BlobProperty()
-    file_name = ndb.StringProperty()
 
-    # add image here
+    image = ndb.StringProperty()
 
+
+def new_pet(petname, atype, breed, description, age, time_posted, image): #add image argument
+  """Puts a new pet into Datastore."""
+  newpet = AddPet2DS(petname=petname, age=age, atype=atype, time_posted=datetime.datetime.now(), breed=breed, description = description, image=image)
+  return newpet.put()
 
 
     def get(self):
@@ -59,10 +62,7 @@ class AddPet2DS(ndb.Model):
 
 
 
-def new_pet(petname, atype, breed, description, age, time_posted, picture, file_name): #add image argument
-        """Puts a new pet into Datastore."""
-        newpet = AddPet2DS(petname=petname, age=age, atype=atype, time_posted=datetime.datetime.now(), breed=breed, description = description, picture = picture, file_name=file_name)
-        return newpet.put()
+
 
 #logging.info(AddPet2DS.query().get())
 #print AddPet2DS.query().get()

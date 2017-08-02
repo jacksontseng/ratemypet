@@ -7,17 +7,34 @@
   <head>
     <meta charset="utf-8">
     <title>Feed</title>
+    <link rel="stylesheet" type="text/css" href="/styles/feed.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <a href='/addpet'>Add Pet </a>
-<div>
-            <a href="/feed">All</a>
-            <a href="?filter=mostrecent">Most Recent</a>
-            <a href="?filter=highest_rated">Highest Rated</a>
-            <a href="?filter=dog">Dogs</a>
-            <a href="?filter=cat">Cats</a>
-            <a href="?filter=bird">Birds</a>
-            <a href="?filter=pig">Pigs</a>
-          </div>
+<!-- <div> -->
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">RateYourPet</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <a href="/feed">All</a>
+      <a href="?filter=mostrecent">Most Recent</a>
+      <a href="?filter=highest_rated">Highest Rated</a>
+      <a href="?filter=dog">Dogs</a>
+      <a href="?filter=cat">Cats</a>
+      <a href="?filter=bird">Birds</a>
+      <a href="?filter=pig">Pigs</a>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+          <!-- </div> -->
+
   </head>
   <body>
 <h1><center>Your Pets Feed</center></h1>
@@ -32,7 +49,9 @@
 <h3>{{ pet.atype }} </h3>
 <h3>{{ pet.breed }}</h3>
 <h3>{{ pet.description }} </h3>
-<img src="{{pet.picture}}" class="image">
+
+<img src={{pet.image}}>
+
 </div>
 <br>
 {% endfor %}
