@@ -26,9 +26,9 @@ class mainFeedHandler(webapp2.RequestHandler):
         else:
             pets = allpets()
 
-        pets = [i.to_dict() for i in pets]
-        for pet in pets:
-            pet_key = get_serving_url(pet["picture"])
+        # pets = [i.to_dict() for i in pets]
+        # for pet in pets:
+        #     pet_key = get_serving_url(pet["picture"])
 
 
         args = {'pets': pets}

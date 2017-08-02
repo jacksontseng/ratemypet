@@ -18,17 +18,13 @@ class AddPet(webapp2.RequestHandler):
         atype = self.request.get("type")
         breed = self.request.get("breed")
         description = self.request.get("description")
+        date = self.request.get('time_posted')
         age = int(self.request.get("age"))
-        date = self.request.get("time_posted")
         image = self.request.get('image')
 
         new_pet(petname, atype, breed, description, age, date, image) #add image argument
-        self.response.out.write("You have submitted your pet!")
-        self.response.out.write("<a href='/addpet'>"
-
-
-
-
+        self.response.out.write("You have submitted your pet <br>")
+        self.response.out.write("<a href='/addpet'> add another pet</a>") #sketch way of adding html thru python
         # self.redirect('/')
 
 
@@ -49,16 +45,16 @@ def new_pet(petname, atype, breed, description, age, time_posted, image): #add i
   return newpet.put()
 
 
-    def get(self):
-        # why does it need ex - ?id=2ay and not just /2ay
-        pic_file = self.request.get("name")
-        query = AddPet2DS.query(AddPet2DS.file_name == pic_file)
-        result = query.get()
-        logging.info("It works ")
-
-        if result:
-            self.response.headers[b'Content-Type'] = mimetypes.guess_type(result.file_name)[0]
-            self.response.write(result.blob)
+    # def get(self):
+    #     # why does it need ex - ?id=2ay and not just /2ay
+    #     pic_file = self.request.get("name")
+    #     query = AddPet2DS.query(AddPet2DS.file_name == pic_file)
+    #     result = query.get()
+    #     logging.info("It works ")
+    #
+    #     if result:
+    #         self.response.headers[b'Content-Type'] = mimetypes.guess_type(result.file_name)[0]
+    #         self.response.write(result.blob)
 
 
 
