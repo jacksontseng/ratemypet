@@ -17,13 +17,11 @@ class AddPet(webapp2.RequestHandler):
         atype = self.request.get("type")
         breed = self.request.get("breed")
         description = self.request.get("description")
-        date = self.request.get('time_posted')
-        age = int(self.request.get("age"))
-        # add image url here
 
-        new_pet(petname, atype, breed, description, age, date,) #add image argument
-        self.response.out.write("You have submitted your pet <br>")
-        self.response.out.write("<a href='/addpet'> add another pet</a>") #sketch way of adding html thru python
+        picture = self.request.get("pic")
+
+
+
         # self.redirect('/')
 
 
@@ -31,15 +29,15 @@ class AddPet2DS(ndb.Model):
     petname = ndb.StringProperty()
     atype = ndb.StringProperty()
     breed = ndb.StringProperty()
-    time_posted = ndb.DateProperty()
+    time_posted = ndb.DateTimeProperty()
     description = ndb.StringProperty()
-    age = ndb.IntegerProperty()
+
     # add image here
 
 
-def new_pet(petname, atype, breed, description, age, time_posted): #add image argument
+def new_pet(petname, atype, breed, description, age, time_posted, picture): #add image argument
   """Puts a new pet into Datastore."""
-  newpet = AddPet2DS(petname=petname, age=age, atype=atype, time_posted=datetime.datetime.now(), breed=breed, description = description)
+  newpet = AddPet2DS(petname=petname, age=age, atype=atype, time_posted=datetime.datetime.now(), breed=breed, description = description, picture = picture)
   return newpet.put()
 
 logging.info(AddPet2DS.query().get())
