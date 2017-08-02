@@ -7,8 +7,8 @@ import json
 from google.appengine.api import users
 
 import logging
-import add
-import feed
+from add import *
+from feed import *
 import shutil
 
 
@@ -42,17 +42,18 @@ class signin(webapp2.RequestHandler):
         self.response.write(
             '<html><body>{}</body></html>'.format(greeting))
 
-class ImageHandler(webapp2.RequestHandler):
-    def get(self):
-        template = jinja_env.get_template('templates/feed.html')
-        return self.response.write(template.render())
+# class ImageHandler(webapp2.RequestHandler):
+#     def get(self):
+#         template = jinja_env.get_template('templates/feed.html')
+#         return self.response.write(template.render())
 
 
 app = webapp2.WSGIApplication([
     ('/main', MainHandler),
     ('/', HomeHandler),
     ('/signin', signin),
+    ('/addpet', AddPet),
+    ('/feed', mainFeedHandler),
 
-    ('/feed', feed.mainFeedHandler)
 
 ], debug=True)

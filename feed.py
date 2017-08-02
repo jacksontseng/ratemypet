@@ -2,6 +2,7 @@ import jinja2
 import os
 import webapp2
 from google.appengine.ext import ndb
+from google.appengine.api.images import get_serving_url
 import logging
 import add
 import datetime
@@ -25,11 +26,21 @@ class mainFeedHandler(webapp2.RequestHandler):
         else:
             pets = allpets()
 
+        pets = [i.to_dict() for i in pets]
+        for pet in pets:
+            pet_key = get_serving_url(pet["picture"])
+
 
         args = {'pets': pets}
-
+        # result =
+        # self.response.headers['Content-Type'] = 'image/png'
+        # for pet in pets:
+        #     self.response.out.write(pet["picture"])
+        #     self.response.out.write(pet["petname"])
         self.response.write(template.render(args))
 
+# Create a new handler which it's only purpose is to
+# return an image
 
 def allpets():
     query = add.AddPet2DS.query()
