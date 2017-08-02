@@ -1,38 +1,89 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Feed</title>
-    <link rel="stylesheet" type="text/css" href="/styles/feed.css">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<a href='/addpet'>Add Pet </a>
-<!-- <div> -->
-  <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">RateYourPet</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <a href="/feed">All</a>
-      <a href="?filter=mostrecent">Most Recent</a>
-      <a href="?filter=highest_rated">Highest Rated</a>
+<head>
+
+  <meta charset="utf-8">
+  <title>Feed</title>
+    <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
+
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+}
+
+li {
+    float: left;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: white;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #black;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="/">Home</a></li>
+  <li><a href="addpet">Add Pet</a></li>
+  <li>  <a href="/feed">All</a></li>
+  <li>  <a href="?filter=mostrecent">Most Recent</a></li>
+  <li>  <a href="?filter=highest_rated">Highest Rated</a></li>
+
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Animal</a>
+    <div class="dropdown-content">
       <a href="?filter=dog">Dogs</a>
       <a href="?filter=cat">Cats</a>
       <a href="?filter=bird">Birds</a>
       <a href="?filter=pig">Pigs</a>
-    </ul>
-  </div>
-</nav>
+    </div>
+  </li>
+</ul>
 
 
 
-
-          <!-- </div> -->
-
-  </head>
-  <body>
 <h1><center>Your Pets Feed</center></h1>
 <div>
 
@@ -55,3 +106,14 @@
 </div>
   </body>
 </html>
+
+<style>
+body {
+    background-image: url("/images/marble.jpg");
+    font-family: 'Special Elite', cursive;
+    font: 20px;
+    line-height: 1.8;
+    color: #000;
+
+}
+</style>
