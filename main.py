@@ -42,10 +42,10 @@ class signin(webapp2.RequestHandler):
         self.response.write(
             '<html><body>{}</body></html>'.format(greeting))
 
-class ImageHandler(webapp2.RequestHandler):
-    def get(self):
-        template = jinja_env.get_template('templates/feed.html')
-        return self.response.write(template.render())
+# class ImageHandler(webapp2.RequestHandler):
+#     def get(self):
+#         template = jinja_env.get_template('templates/feed.html')
+#         return self.response.write(template.render())
 
 
 app = webapp2.WSGIApplication([
