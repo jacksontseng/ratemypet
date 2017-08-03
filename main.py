@@ -5,7 +5,6 @@ import jinja2
 import os
 import json
 from google.appengine.api import users
-
 import logging
 import add
 import feed

@@ -13,6 +13,7 @@ jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
 
+
 class mainFeedHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -48,9 +49,9 @@ class mainFeedHandler(webapp2.RequestHandler):
         # else:
         #     pets = allpets()
 
-        # pets = [i.to_dict() for i in pets]
-        # for pet in pets:
-        #     pet_key = get_serving_url(pet["picture"])
+            # pets = [i.to_dict() for i in pets]
+            # for pet in pets:
+            #     pet_key = get_serving_url(pet["picture"])
 
 
             args = {'pets': pets, 'greeting': greeting}
@@ -68,8 +69,6 @@ class mainFeedHandler(webapp2.RequestHandler):
             self.response.write(
                 '<html><body>{}</body></html>'.format(greeting))
 
-# Create a new handler which it's only purpose is to
-# return an image
 
 def allpets():
     query = add.AddPet2DS.query()

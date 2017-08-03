@@ -42,11 +42,14 @@ class AddPet(webapp2.RequestHandler):
         # picture = self.request.get("picture")
 
 
-        new_pet(petname, atype, breed, description, age, date, image) #add image argument
-        self.response.out.write("You have submitted your pet <br>")
+        new_pet(petname, atype, breed, description, age, date, image)
+        self.redirect('/')
+        #self.response.out.write("You have submitted your pet <br>")
         # self.redirect('/feed')
-        self.response.out.write("<a href='/addpet'> add another pet</a>") #sketch way of adding html thru python
+        #self.response.out.write("<a href='/addpet'> add another pet</a>") #sketch way of adding html thru python
         # self.redirect('/')
+
+
 
 
 class AddPet2DS(ndb.Model):
