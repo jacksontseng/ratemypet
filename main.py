@@ -17,10 +17,10 @@ import shutil
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
-        template = jinja_env.get_template('templates/main.html')
-        return self.response.write(template.render())
+# class MainHandler(webapp2.RequestHandler):
+#     def get(self):
+#         template = jinja_env.get_template('templates/main.html')
+#         return self.response.write(template.render())
 
 class HomeHandler(webapp2.RequestHandler):
     def get(self):
@@ -52,6 +52,7 @@ app = webapp2.WSGIApplication([
     ('/', HomeHandler),
     ('/signin', signin),
     ('/addpet', add.AddPet),
-    ('/feed', feed.mainFeedHandler)
+    ('/feed', feed.mainFeedHandler),
+    ('/upvote', feed.UpvoteHandler),
 
 ], debug=True)
