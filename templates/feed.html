@@ -11,6 +11,7 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/template.js"></script>
 <a href='/addpet'>Add Pet </a>
 <!-- <div> -->
   <nav class="navbar navbar-inverse">
@@ -43,14 +44,23 @@
 
 {% for pet in pets %}
 <div>
-<h3>{{ pet.petname }}</h3>
+<h3 >{{ pet.petname }}</h3>
 <h3>{{ pet.age }}</h3>
 <h3>{{ pet.time_posted }} </h3>
 <h3>{{ pet.atype }} </h3>
 <h3>{{ pet.breed }}</h3>
 <h3>{{ pet.description }} </h3>
+<h3>{{ pet.votes }}</h3>
 
-<img src={{pet.image}}>
+<!--<img src={{pet.image}}>-->
+<br>
+        {% if pet.votes %}
+          <p class="upvotes">Upvotes: {{ pet.votes }}</p>
+        {% endif %}
+
+
+<button type="button" onclick="upvote('{{ pet.petname }}')"> Vote </button>
+
 
 </div>
 <br>
@@ -59,5 +69,39 @@
 
 
 </div>
+
+
+
+<script>
+function upvote(div){
+  console.log(div);
+  $.ajax({
+    type: "POST",
+    url: '/upvote',
+    data: {'petname': div},
+
+});
+
+};
+
+//});
+
+
+  // petname = $(div).find("h3").text();
+  // $.post("/upvote", data={ "petname": petname },
+  //   function(d) {
+  //       // Since Datastore has some latency registering
+  //       // the update, artificially increase the vote
+  //       // count on the frontend. When the user next
+  //       // refreshes the page, the actual count - as
+  //       // read from Datastore - will appear.
+  //       vote_text = $(div).find(".upvotes").text();
+  //       vote_components = vote_text.split(" ");
+  //       votes = parseInt(vote_components[1]) + 1;
+  //       $(div).find(".upvotes").text(vote_components[0] + " " + votes);
+  //    });
+//}
+</script>
+
   </body>
 </html>
