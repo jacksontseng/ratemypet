@@ -23,13 +23,11 @@ class mainFeedHandler(webapp2.RequestHandler):
             greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(
                 nickname, logout_url)
             template = jinja_env.get_template('templates/feed.html')
-            # if self.request.get('filter') == 'highest_rated':
-            #     pets = highest_rated()
 
             if self.request.get('filter') == 'mostrecent':
                 pets = mostrecent()
 
-            elif self.request.get('filter') in ['dog', 'cat', 'bird', 'pig']:
+            elif self.request.get('filter') in ['dog', 'cat', 'bird', 'rock', 'turtle', 'snake', 'fish', 'frog', 'bunny']:
                 pets = atype(self.request.get('filter'))
 
             elif self.request.get('filter') == 'highest_rated':
@@ -56,7 +54,7 @@ class mainFeedHandler(webapp2.RequestHandler):
             #     pet_key = get_serving_url(pet["picture"])
 
 
-            args = {'pets': pets}
+            args = {'pets': pets, 'greeting': greeting}
             self.response.write(template.render(args))
 
         # result =
@@ -68,8 +66,8 @@ class mainFeedHandler(webapp2.RequestHandler):
             login_url = users.create_login_url('/')
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
 
-        self.response.write(
-            '<html><body>{}</body></html>'.format(greeting))
+            self.response.write(
+                '<html><body>{}</body></html>'.format(greeting))
 
 
 def allpets():
@@ -82,10 +80,9 @@ def allpets():
 def mostrecent():
     """Fetches all GIFs posted in the past hour."""
     onedayago = datetime.datetime.now() - datetime.timedelta(hours=24)
+    logging.warning(onedayago)
     query = add.AddPet2DS.query(add.AddPet2DS.time_posted > onedayago)
     return query.fetch(limit=10)
-
-
 
 
 def atype(animal_type):

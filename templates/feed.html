@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,12 +5,11 @@
   <meta charset="utf-8">
   <title>Feed</title>
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
-
   <script src= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
 <style>
-ul {
+#navbardropdown {  /*test for id instead of class */
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -38,12 +36,13 @@ li.dropdown {
     display: none;
     position: absolute;
     background-color: #black;
-    min-width: 160px;
+    color: black;
+    min-width: 100px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
 .dropdown-content a {
-    color: white;
+    color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
@@ -57,7 +56,7 @@ li.dropdown {
 </head>
 <body>
 
-<ul>
+<ul id="navbardropdown">
   <li><a href="/">Home</a></li>
   <li><a href="addpet">Add Pet</a></li>
   <li>  <a href="/feed">All</a></li>
@@ -69,53 +68,37 @@ li.dropdown {
     <div class="dropdown-content">
       <a href="?filter=dog">Dogs</a>
       <a href="?filter=cat">Cats</a>
+      <a href="?filter=turtle">Turtle</a>
+      <a href="?filter=snake">Snakes</a>
+      <a href="?filter=fish">Fish</a>
+      <a href="?filter=frog">Frogs</a>
+      <a href="?filter=bunny">Bunny</a>
       <a href="?filter=bird">Birds</a>
-      <a href="?filter=pig">Pigs</a>
+      <a href="?filter=rock">Rock</a>
     </div>
   </li>
 </ul>
 
 
-
-
 <h1><center>Your Pets Feed</center></h1>
-<!-- <ul class="flex-container"> -->
-
-<center class="three-column-class">
-
+ {{greeting}}
+<ul class="flex-container">
 {% for pet in pets %}
-<div>
-   <li class="flex-item">
-      <h2><b>{{ pet.petname }}</b></h2>
-      <img src={{pet.image}}  style="width:25%">
-      <p>{{ pet.description }} <br> {{ pet.breed }}</p>
-      <button type="button" onclick="upvote('{{ pet.petname }}')"> Vote </button>
-
+  <li class="flex-item">
+    <h2><b >{{ pet.petname }}</b></h2><br>
+  <center>    <img src={{pet.image}}  style="width:100%">
+        {{ pet.breed }} <br> <br>  {{ pet.description }}<br>
             {% if pet.votes %}
-              <p class="upvotes">Upvotes: {{ pet.votes }}</p>
+              <p class="upvotes">Votes: {{ pet.votes }}</p>
+              {% else %}
+                <p>Votes: 0</p>
             {% endif %}
-          </li>
-</div>
-  <!-- </li> -->
+      <button type="button" onclick="upvote('{{ pet.petname }}')"> Vote </button></center
+  </li>
   {% endfor %}
 </center>
 
 <!-- </ul> -->
-
-<!-- {% for pet in pets %}
-<div>
-<h3>{{ pet.petname }}</h3>
-<h3>{{ pet.age }}</h3>
-<h3>{{ pet.time_posted }} </h3>
-<h3>{{ pet.atype }} </h3>
-<h3>{{ pet.breed }}</h3>
-<h3>{{ pet.description }} </h3>
-<img src={{pet.image}}>
-</div>
-<br>
-{% endfor %} -->
-
-
 
 </div>
   </body>
@@ -128,7 +111,7 @@ body {
     background-attachment: fixed;
     font-family: 'Special Elite', cursive;
     font: 20px;
-    line-height: 1.8;
+    line-height: 1;
     color: #000;
 }
 /*.card {
@@ -156,15 +139,16 @@ body {
   justify-content: space-around;
 }
 .flex-item {
-  background: clear;
-  /*padding: 5px;*/
-  /*width: 200px;*/
-  /*height: 150px;*/
+  background: white;
+  padding: 6px;
+  width: 250px;
+  height: 100% ;
   margin-top: 10px;
-  /*line-height: 150px;*/
+
+  line-height: 25 px;
   color: clear;
-  /*font-weight: bold;*/
-  /*font-size: 3em;*/
+  font-weight: bold;
+  font-size: 10 px;
   text-align: center;
 }
 

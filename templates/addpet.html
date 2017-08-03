@@ -38,32 +38,37 @@
 <h1><center>Add your pet</center></h1>
 
 <form method="post" enctype="multipart/form-data" action ="">
-  <!-- <label for="noun1"> Enter a name:</label> -->
-     <h3>Enter your pet name: <input type="text" name="petname"/></h3>
+     <h3>Enter your pet name: <input type="text" name="petname" required="required"/></h3>
      <h3>Enter type of animal:</h3>
  <br>
- <input type="radio" name="type" value="dog">dog
+ <input type="radio" name="type" value="dog" required="required">Dog
  <br>
- <input type="radio" name="type" value="cat">cat
+ <input type="radio" name="type" value="cat" required="required">Cat
  <br>
- <input type="radio" name="type" value="bird">bird
+ <input type="radio" name="type" value="bird" required="required">Bird
  <br>
- <input type="radio" name="type" value="pig">pig
-
-
+ <input type="radio" name="type" value="rock" required="required">Rock
+ <br>
+ <input type="radio" name="type" value="turtle" required="required">Turtle
+ <br>
+ <input type="radio" name="type" value="snake" required="required">Fish
+ <br>
+ <input type="radio" name="type" value="bunny" required="required">Bunny
+ <br>
+ <input type="radio" name="type" value="frog" required="required">Frog
 
 <h3> Enter your pet's age: </h3>
-<input type="number" maxlength="4" name="age"/></h3>
+<input type="number" maxlength="4" name="age" required="required"/></h3>
 
 
- <h3>Enter your pet's breed: <input type="text" name="breed"/></h3>
+ <h3>Enter your pet's breed: <input type="text" name="breed" required="required"/></h3>
 
- <h3>Enter a description of your pet:<input type="text" name="description"/></h3>
+ <h3>Enter a description of your pet:<input type="text" name="description" required="required"/></h3>
 
 
 <!-- add an image of the pet here -->
 
-<h3>Enter URL of a picture of your pet<input type-'text' name='image'/></h3>
+<h3>Enter URL of a picture of your pet<input type-'text' name='image' required="required"/></h3>
 
   <p><input type="submit" value="Submit"></p>
 
