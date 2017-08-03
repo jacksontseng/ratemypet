@@ -49,7 +49,6 @@ class signin(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/main', MainHandler),
     ('/', HomeHandler),
     ('/signin', signin),
     ('/addpet', add.AddPet),

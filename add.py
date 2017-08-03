@@ -6,6 +6,9 @@ import datetime
 import logging
 import mimetypes
 
+# from clarifai import rest
+# from clarifai.rest import ClarifaiApp
+
 jinja_env = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
@@ -21,6 +24,7 @@ class AddPet(webapp2.RequestHandler):
         date = self.request.get('time_posted')
         age = int(self.request.get("age"))
         image = self.request.get('image')
+
 
         new_pet(petname, atype, breed, description, age, date, image) #add image argument
         self.response.out.write("You have submitted your pet <br>")
@@ -45,19 +49,13 @@ def new_pet(petname, atype, breed, description, age, time_posted, image): #add i
   return newpet.put()
 
 
-    # def get(self):
-    #     # why does it need ex - ?id=2ay and not just /2ay
-    #     pic_file = self.request.get("name")
-    #     query = AddPet2DS.query(AddPet2DS.file_name == pic_file)
-    #     result = query.get()
-    #     logging.info("It works ")
-    #
-    #     if result:
-    #         self.response.headers[b'Content-Type'] = mimetypes.guess_type(result.file_name)[0]
-    #         self.response.write(result.blob)
+########################## testing image recognition
 
+# app = ClarifaiApp(api_key='{de0833ebe89546ceab61ddccc997c13e}')
 
-
+# model = app.models.get("general-v1.3")
+# prediction = model.predict_by_url(url='https://samples.clarifai.com/metro-north.jpg')
+# logging.warning( prediction)
 
 
 #logging.info(AddPet2DS.query().get())
