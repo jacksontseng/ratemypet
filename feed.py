@@ -36,9 +36,20 @@ class mainFeedHandler(webapp2.RequestHandler):
                 pets = get_top_ten()
             else:
                 pets = allpets()
-
-
-
+        # template = jinja_env.get_template('templates/feed.html')
+        # if self.request.get('filter') == 'highest_rated':
+        #     pets = get_top_ten()
+        #
+        # elif self.request.get('filter') == 'mostrecent':
+        #     pets = mostrecent()
+        #
+        # elif self.request.get('filter') in ['dog', 'cat', 'bird', 'pig']:
+        #     pets = atype(self.request.get('filter'))
+        #
+        # elif self.request.get('filter') == 'highest_rated':
+        #     pets = get_top_ten()
+        # else:
+        #     pets = allpets()
 
             # pets = [i.to_dict() for i in pets]
             # for pet in pets:
@@ -46,12 +57,13 @@ class mainFeedHandler(webapp2.RequestHandler):
 
 
             args = {'pets': pets}
-            # result =
-            # self.response.headers['Content-Type'] = 'image/png'
-            # for pet in pets:
-            #     self.response.out.write(pet["picture"])
-            #     self.response.out.write(pet["petname"])
             self.response.write(template.render(args))
+
+        # result =
+        # self.response.headers['Content-Type'] = 'image/png'
+        # for pet in pets:
+        #     self.response.out.write(pet["picture"])
+        #     self.response.out.write(pet["petname"])
         else:
             login_url = users.create_login_url('/')
             greeting = '<a href="{}">Sign in</a>'.format(login_url)
@@ -74,20 +86,6 @@ def mostrecent():
     return query.fetch(limit=10)
 
 
-# def highest_rated():
-#     template = jinja_env.get_template('templates/index.html')
-#
-#         if self.request.get('filter') == 'recent':
-#           images = models.get_recent()
-#         elif self.request.get('filter') in ['swag', 'trouble', 'babybiebs']:
-#           images = models.get_by_tag(self.request.get('filter'))
-#         else:
-#           images = models.get_top_ten()
-#
-#         args = {'images': images }
-#
-#         self.response.write(template.render(args))
-
 
 
 def atype(animal_type):
@@ -96,7 +94,6 @@ def atype(animal_type):
     animalfilter = query.fetch(limit = 10)
     print animalfilter
     return animalfilter
-
 
 def get_top_ten():
   """Fetches the top ten ranked Bieber GIFs."""
