@@ -94,12 +94,12 @@ li.dropdown {
 {% for pet in pets %}
   <li class="flex-item">
     <b >{{ pet.petname }}</b>
-  <center>    <img src={{pet.image}}  style="width:100%">
+  <center>    <img src={{pet.image}}  class="thumb1">
       {{ pet.description }}  {{ pet.breed }}
             {% if pet.votes %}
               <p class="upvotes">Upvotes: {{ pet.votes }}</p>
             {% endif %}
-      <button type="button" onclick="upvote('{{ pet.petname }}')"> Vote </button></center
+      <button type="button" id="upvotebutton" onclick="upvote('{{ pet.petname }}')"> Vote </button></center
   </li>
   {% endfor %}
 </ul>
@@ -109,10 +109,18 @@ li.dropdown {
 </html>
 
 <style>
+.thumb1 {
+background-size:contain;
+background: 50% 50% no-repeat; /* 50% 50% centers image in div */
+width: 250px;
+height: 250px;
+}
+
 body {
     background-image: url("/images/marble.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
+    background-size:cover;
     font-family: 'Special Elite', cursive;
     font: 20px;
     line-height: 1;
@@ -162,6 +170,12 @@ body {
   font-size: 10 px;
   text-align: center;
 }
+
+#upvotebutton {padding:5px 15px; background:#474e5d; border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; }
+
 </style>
 
 <script>
