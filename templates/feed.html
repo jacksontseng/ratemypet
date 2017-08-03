@@ -93,22 +93,18 @@ li.dropdown {
 <ul class="flex-container">
 
 {% for pet in pets %}
-
   <li class="flex-item">
-
-
-<div>
-
-    <img src={{pet.image}}  style="width:100%">
-    <div class="container">
+    <div>
+      <img src={{pet.image}}  style="width:100%">
       <h4><b>{{ pet.petname }}</b></h4>
       <p>{{ pet.description }}  {{ pet.breed }}</p>
-
-
+        <br>
+            {% if pet.votes %}
+              <p class="upvotes">Upvotes: {{ pet.votes }}</p>
+            {% endif %}
+      <button type="button" onclick="upvote('{{ pet.petname }}')"> Vote </button>
     </div>
-  </div>
-</li>
-
+  </li>
   {% endfor %}
 </ul>
 
@@ -143,27 +139,22 @@ body {
 
 }
 
-.card {
-    /* Add shadows to create the "card" effect */
+/*.card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     width: 300px;
     height: 300px;
 }
-
-/* On mouse-over, add a deeper shadow */
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
-
-/* Add some padding inside the card container */
-
+*/
 
 @import "compass/css3";
 
 .flex-container {
   padding: 0;
-  margin: 0;
+  margin: 100 px;
   list-style: none;
 
   display: -webkit-box;
@@ -191,3 +182,18 @@ body {
   text-align: center;
 }
 </style>
+
+<script>
+function upvote(div){
+  console.log(div);
+  $.ajax({
+    type: "POST",
+    url: '/upvote',
+    data: {'petname': div},
+
+});
+
+};
+
+
+</script>
