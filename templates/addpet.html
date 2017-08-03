@@ -28,7 +28,7 @@
           <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="signin">Sign In</a></li>
-              <li><a href="feed">Browse</a></li>
+              <li><a href="feed">Feed</a></li>
               <li><a href="addpet">Add Pet</a></li>
             </ul>
           </div>
@@ -50,8 +50,7 @@
  <br>
  <input type="radio" name="type" value="pig">pig
 
-<h3>Choose a picture of your pet:</h3>
-<input type="file" name="pic" accept="image/*">
+
 
 <h3> Enter your pet's age: </h3>
 <input type="number" maxlength="4" name="age"/></h3>
@@ -74,13 +73,20 @@
 <style>
 
 body {
-  background-image: url("/images/sky.gif");
-background-size: cover;
+  background-image: url("/images/doggy.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: 'Special Elite', cursive;
     font: 20px;
     line-height: 1.8;
-    color: #FFFFFF;
+    color: black;
 }
+
+h1 {
+    color: SlateGrey;
+}
+
 form {
    display: inline-block;
    text-align: center;
@@ -116,6 +122,7 @@ label.field{
 
 input.textbox-300 {
   width: 200px;
+  color: #000;
   float: center;
 }
 
