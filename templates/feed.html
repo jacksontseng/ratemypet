@@ -10,7 +10,7 @@
   <title>Feed</title>
     <link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
 
-  <script src= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src= "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></sc
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
 <style>
@@ -88,11 +88,31 @@ li.dropdown {
 
 
 
-<h1><center>Your Pets Feed</center></h1>
-<div>
 
+<h1><center>Your Pets Feed</center></h1>
+<ul class="flex-container">
 
 {% for pet in pets %}
+
+  <li class="flex-item">
+
+
+<div>
+
+    <img src={{pet.image}}  style="width:100%">
+    <div class="container">
+      <h4><b>{{ pet.petname }}</b></h4>
+      <p>{{ pet.description }}  {{ pet.breed }}</p>
+
+
+    </div>
+  </div>
+</li>
+
+  {% endfor %}
+</ul>
+
+<!-- {% for pet in pets %}
 <div>
 <h3>{{ pet.petname }}</h3>
 <h3>{{ pet.age }}</h3>
@@ -105,7 +125,7 @@ li.dropdown {
 
 </div>
 <br>
-{% endfor %}
+{% endfor %} -->
 
 
 
@@ -121,5 +141,53 @@ body {
     line-height: 1.8;
     color: #000;
 
+}
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 300px;
+    height: 300px;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+/* Add some padding inside the card container */
+
+
+@import "compass/css3";
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  background-color: clear;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.flex-item {
+  background: clear;
+  padding: 5px;
+  width: 200px;
+  height: 150px;
+  margin-top: 10px;
+
+  line-height: 150px;
+  color: clear;
+  font-weight: bold;
+  font-size: 3em;
+  text-align: center;
 }
 </style>
