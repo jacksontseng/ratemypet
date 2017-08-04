@@ -47,12 +47,8 @@ li.dropdown {
     text-decoration: none;
     display: block;
     text-align: left;
-    background-color: #999999;
-    opacity: 0.8;
 }
-
-.dropdown-content a:hover {background-color: #ffffff}
-
+.dropdown-content a:hover {background-color: #f1f1f1}
 .dropdown:hover .dropdown-content {
     display: block;
 }
@@ -89,17 +85,17 @@ li.dropdown {
 <ul class="flex-container">
 {% for pet in pets %}
   <li class="flex-item">
-    <b >{{ pet.petname }}</b>
-  <center>    <img src={{pet.image}}  class="imagestretch">
-      {{pet.atype}} : {{ pet.breed }} <br>
-      Age: {{pet.age}} <br>
-      {{ pet.description }} <br>
-            {% if pet.votes %}
+    <h2><b >{{ pet.petname }}</b></h2><br>
+  <center>    <img src={{pet.image}}  style="width:100%" class="thumb1">
+    {{ pet.atype }} : {{ pet.breed }} <br>
+     <br>Age: {{ pet.age }} <br>
+       <br>{{ pet.description }}
+            {% if pet.votes %}<br>
               <p class="upvotes">Votes: {{ pet.votes }}</p>
               {% else %}
                 <p>Votes: 0</p>
             {% endif %}
-      <button type="button" class="upvotebutton" onclick="upvote('{{ pet.petname }}')"> Vote </button></center
+      <button type="button" id="upvotebutton" onclick="upvote('{{ pet.petname }}')"> Vote </button></center
   </li>
   {% endfor %}
 </center>
@@ -111,8 +107,8 @@ li.dropdown {
 </html>
 
 <style>
-.imagestretch {
-background-size:cover;
+.thumb1 {
+/*background-size:contain;*/
 background: 50% 50% no-repeat; /* 50% 50% centers image in div */
 /*width: 250px;
 height: 250px;*/
@@ -164,26 +160,13 @@ body {
   font-weight: bold;
   font-size: 10 px;
   text-align: center;
-  border-radius: 2px;
 }
 
-.upvotebutton {
-    border: none;
-    background-color: #999999;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 12px;
-    border-radius: 2px;
-    border: 2px solid #ff0000
-}
-.upvotebutton:hover {
-    background-color: #ffffff; /* Green */
-    color: black;
-    opacity: 0.8;
-}
+#upvotebutton {padding:5px 15px; background:#474e5d; border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    color: white;}
 
 </style>
 
